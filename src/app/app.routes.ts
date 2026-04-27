@@ -24,6 +24,14 @@ export const routes: Routes = [
     loadComponent: () => import('./features/auth/reset-password-success/reset-password-success.component').then(m => m.ResetPasswordSuccessComponent)
   },
   {
+<<<<<<< HEAD
+=======
+    path: 'pointing/:eventId',
+    loadComponent: () =>
+      import('./features/public-checkin/public-checkin.component').then(m => m.PublicCheckinComponent)
+  },
+  {
+>>>>>>> c9f3a96 (meu código)
     path: '',
     canActivate: [authGuard],
     children: [
@@ -84,4 +92,8 @@ export const routes: Routes = [
     ]
   },
   { path: '**', redirectTo: 'dashboard' }
+<<<<<<< HEAD
 ];
+=======
+];
+>>>>>>> c9f3a96 (meu código)

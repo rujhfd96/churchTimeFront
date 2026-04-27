@@ -68,6 +68,44 @@ const statusConfig: Record<EventStatus, { label: string; bg: string; text: strin
           </div>
         </div>
 
+<<<<<<< HEAD
+=======
+        <div class="rounded-lg border border-border bg-card p-6">
+          <div class="flex items-start justify-between gap-4 flex-col md:flex-row">
+            <div class="flex-1">
+              <h2 class="text-lg font-semibold text-foreground">QR Code de presença</h2>
+              <p class="text-sm text-muted-foreground mt-1">
+                Compartilhe este QR com os membros para eles acessarem a tela de apontamento.
+              </p>
+
+              <div class="mt-4 rounded-md border border-border bg-background p-3 break-all text-sm text-foreground">
+                {{ getPointingUrl(e.id) }}
+              </div>
+
+              <button
+                (click)="copyLink(e.id)"
+                class="mt-3 inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-4 py-2 bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+              >
+                <span class="material-icons text-sm mr-1.5">content_copy</span>
+                Copiar link
+              </button>
+
+              @if (copied()) {
+                <p class="text-sm text-green-600 mt-2">Link copiado com sucesso.</p>
+              }
+            </div>
+
+            <div class="rounded-lg border border-border bg-white p-4 self-center">
+              <img
+                [src]="getQrUrl(e.id)"
+                alt="QR Code do evento"
+                class="w-52 h-52 object-contain"
+              />
+            </div>
+          </div>
+        </div>
+
+>>>>>>> c9f3a96 (meu código)
         <a [routerLink]="['/presence', 'event', e.id]" class="block rounded-lg border border-border bg-card p-6 hover:shadow-md hover:border-primary/30 transition-all cursor-pointer group">
           <div class="flex items-center gap-4">
             <div class="w-12 h-12 rounded-xl bg-green-500/15 flex items-center justify-center group-hover:bg-green-500/25 transition-colors">
@@ -104,6 +142,10 @@ export class EventDetailComponent {
   event = signal<EventResponse | null>(null);
   statusConfig = statusConfig;
   confirmDialog = signal<ConfirmDialogData | null>(null);
+<<<<<<< HEAD
+=======
+  copied = signal(false);
+>>>>>>> c9f3a96 (meu código)
 
   canDelete = computed(() => {
     const role = this.authService.getUserRole();
@@ -117,6 +159,28 @@ export class EventDetailComponent {
     });
   }
 
+<<<<<<< HEAD
+=======
+  getPointingUrl(eventId: number): string {
+    return `${window.location.origin}/pointing/${eventId}`;
+  }
+
+  getQrUrl(eventId: number): string {
+    const url = encodeURIComponent(this.getPointingUrl(eventId));
+    return `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${url}`;
+  }
+
+  async copyLink(eventId: number): Promise<void> {
+    try {
+      await navigator.clipboard.writeText(this.getPointingUrl(eventId));
+      this.copied.set(true);
+      setTimeout(() => this.copied.set(false), 2500);
+    } catch {
+      this.copied.set(false);
+    }
+  }
+
+>>>>>>> c9f3a96 (meu código)
   openDeleteDialog(event: EventResponse): void {
     this.confirmDialog.set({
       title: 'Excluir Evento',

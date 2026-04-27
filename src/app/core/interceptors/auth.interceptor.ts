@@ -17,13 +17,29 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
     });
   }
 
+<<<<<<< HEAD
   return next(authReq).pipe(
     catchError((error: any) => {
       if (error.status === 401) {
+=======
+  const isAuthRequest =
+    req.url.includes('/auth/login') ||
+    req.url.includes('/auth/register') ||
+    req.url.includes('/auth/forgot-password') ||
+    req.url.includes('/auth/reset-password');
+
+  return next(authReq).pipe(
+    catchError((error: any) => {
+      if (error.status === 401 && !isAuthRequest) {
+>>>>>>> c9f3a96 (meu código)
         localStorage.removeItem('token');
         router.navigate(['/login']);
       }
       return throwError(() => error);
     })
   );
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> c9f3a96 (meu código)
