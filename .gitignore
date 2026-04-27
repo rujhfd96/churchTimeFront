@@ -1,0 +1,52 @@
+# Build output
+/dist/
+
+# Dependencies
+/node_modules/
+
+# IDE
+/.idea/
+/.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Angular
+/.angular/
+
+# Environment files with secrets
+src/environments/environment.local.ts
+.env
+.env.*
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+*.log
+
+# Coverage
+/coverage/
+
+# Editor temp files
+*.code-workspace
+.cache/
+
+# OS generated
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Desktop.ini
+
+# Misc
+*.pid
+*.seed
+*.pid.lock
